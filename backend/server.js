@@ -32,6 +32,7 @@ app.get('/health', (req, res) => {
 
 // API Routes
 app.use('/api/products', require('./routes/products'));
+app.use('/api/cart', require('./routes/cart'));
 
 // 404 handler
 app.use((req, res) => {

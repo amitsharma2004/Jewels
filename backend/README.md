@@ -49,6 +49,15 @@ npm run seed
 - `GET /api/products` - Get all products
 - `GET /api/products/:id` - Get single product by ID
 
+### Cart
+- `POST /api/cart` - Add item to cart (creates cart if doesn't exist)
+- `GET /api/cart/:cartId` - Get cart contents
+- `PUT /api/cart/:cartId/items/:productId` - Update item quantity
+- `DELETE /api/cart/:cartId/items/:productId` - Remove item from cart
+- `DELETE /api/cart/:cartId` - Clear entire cart
+
+See [CART_API.md](./CART_API.md) for detailed cart API documentation.
+
 ## Response Format
 
 All API responses follow this structure:
