@@ -3,9 +3,14 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const connectDB = require('./config/db');
+const errorHandler = require('./middleware/errorHandler');
 
 // Load environment variables
 dotenv.config();
+
+// Connect to MongoDB
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +30,9 @@ app.get('/health', (req, res) => {
   });
 });
 
+// API Routes
+app.use('/api/products', require('./routes/products'));
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
@@ -34,15 +42,7 @@ app.use((req, res) => {
 });
 
 // Global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  
-  res.status(err.status || 500).json({
-    success: false,
-    message: err.message || 'Internal server error',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
-  });
-});
+app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
