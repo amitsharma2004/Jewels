@@ -1,2 +1,3 @@
-// Export components here as they are created
-// Example: export { default as Header } from './Header';
+export { default as ProductCard } from './ProductCard';
+export { default as ProductSkeleton } from './ProductSkeleton';
+export { default as Navbar } from './Navbar';

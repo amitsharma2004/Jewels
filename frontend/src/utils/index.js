@@ -1,2 +1,1 @@
-// Export utility functions here as they are created
-// Example: export { formatPrice } from './formatters';
+export { formatPrice, capitalize } from './formatters';
