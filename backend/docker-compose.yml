@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: .
+      target: development
+    container_name: naksh-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongo:27017/naksh-jewels
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    networks:
+      - naksh-network
+    restart: unless-stopped
+
+  # MongoDB Database
+  mongo:
+    image: mongo:7-jammy
+    container_name: naksh-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - naksh-network
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  naksh-network:
+    driver: bridge
