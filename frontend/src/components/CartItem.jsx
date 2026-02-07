@@ -47,42 +47,57 @@ const CartItem = ({ item }) => {
   return (
     <div className={styles.cartItem}>
       <div className={styles.imageContainer}>
-        <img src={imageUrl} alt={product?.name} className={styles.image} />
+        <img 
+          src={imageUrl} 
+          alt={`${product?.name}`}
+          className={styles.image}
+          width="120"
+          height="120"
+        />
       </div>
       
       <div className={styles.details}>
         <h3 className={styles.name}>{product?.name}</h3>
         <p className={styles.price}>{formatPrice(priceAtAdd)} each</p>
         {product?.stock <= 5 && (
-          <p className={styles.stockWarning}>Only {product.stock} left in stock</p>
+          <p className={styles.stockWarning} role="alert">
+            Only {product.stock} left in stock
+          </p>
         )}
       </div>
       
       <div className={styles.controls}>
-        <div className={styles.quantityControl}>
+        <div className={styles.quantityControl} role="group" aria-label="Quantity controls">
           <button
             className={styles.quantityButton}
             onClick={() => handleQuantityChange(quantity - 1)}
             disabled={quantity <= 1 || isUpdating}
+            aria-label="Decrease quantity"
           >
             −
           </button>
-          <span className={styles.quantity}>{quantity}</span>
+          <span className={styles.quantity} aria-label={`Quantity: ${quantity}`}>
+            {quantity}
+          </span>
           <button
             className={styles.quantityButton}
             onClick={() => handleQuantityChange(quantity + 1)}
             disabled={quantity >= product?.stock || isUpdating}
+            aria-label="Increase quantity"
           >
             +
           </button>
         </div>
         
-        <p className={styles.itemTotal}>{formatPrice(itemTotal)}</p>
+        <p className={styles.itemTotal} aria-label={`Item total: ${formatPrice(itemTotal)}`}>
+          {formatPrice(itemTotal)}
+        </p>
         
         {!showRemoveConfirm ? (
           <button 
             className={styles.removeButton}
             onClick={confirmRemove}
+            aria-label={`Remove ${product?.name} from cart`}
           >
             Remove
           </button>
@@ -90,6 +105,7 @@ const CartItem = ({ item }) => {
           <button 
             className={styles.confirmButton}
             onClick={handleRemove}
+            aria-label="Confirm removal"
           >
             Confirm?
           </button>

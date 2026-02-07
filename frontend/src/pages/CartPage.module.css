@@ -134,6 +134,13 @@
   cursor: not-allowed;
 }
 
+.checkoutNote {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin-top: var(--spacing-sm);
+}
+
 /* Empty Cart State */
 .emptyCart {
   text-align: center;

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/slices/productSlice';
 import ProductCard from '../components/ProductCard';
-import ProductSkeleton from '../components/ProductSkeleton';
+import ProductCardSkeleton from '../components/Skeletons/ProductCardSkeleton';
 import styles from './ProductListingPage.module.css';
 
 const ProductListingPage = () => {
@@ -21,10 +21,13 @@ const ProductListingPage = () => {
     return (
       <div className={styles.page}>
         <div className={styles.container}>
-          <h1 className={styles.title}>Our Collection</h1>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Our Collection</h1>
+            <p className={styles.subtitle}>Loading our exquisite jewelry...</p>
+          </div>
           <div className={styles.grid}>
             {[...Array(8)].map((_, index) => (
-              <ProductSkeleton key={index} />
+              <ProductCardSkeleton key={index} />
             ))}
           </div>
         </div>
@@ -36,11 +39,15 @@ const ProductListingPage = () => {
     return (
       <div className={styles.page}>
         <div className={styles.container}>
-          <div className={styles.errorContainer}>
-            <div className={styles.errorIcon}>⚠️</div>
+          <div className={styles.errorContainer} role="alert">
+            <div className={styles.errorIcon} aria-hidden="true">⚠️</div>
             <h2 className={styles.errorTitle}>Unable to Load Products</h2>
             <p className={styles.errorMessage}>{error}</p>
-            <button className={styles.retryButton} onClick={handleRetry}>
+            <button 
+              className={styles.retryButton} 
+              onClick={handleRetry}
+              aria-label="Retry loading products"
+            >
               Try Again
             </button>
           </div>
@@ -54,7 +61,7 @@ const ProductListingPage = () => {
       <div className={styles.page}>
         <div className={styles.container}>
           <div className={styles.emptyContainer}>
-            <div className={styles.emptyIcon}>💎</div>
+            <div className={styles.emptyIcon} aria-hidden="true">💎</div>
             <h2 className={styles.emptyTitle}>No Products Available</h2>
             <p className={styles.emptyMessage}>Check back soon for our exquisite jewelry collection</p>
           </div>
@@ -73,12 +80,11 @@ const ProductListingPage = () => {
           </p>
         </div>
         
-        <div className={styles.grid}>
+        <div className={styles.grid} role="list">
           {products.map((product) => (
-            <ProductCard 
-              key={product._id} 
-              product={product}
-            />
+            <div key={product._id} role="listitem">
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </div>

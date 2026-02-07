@@ -30,30 +30,36 @@ const ProductCard = ({ product }) => {
       <div className={styles.imageContainer}>
         <img 
           src={imageUrl} 
-          alt={name}
+          alt={`${name} - ${capitalize(category)}`}
           className={styles.image}
           loading="lazy"
+          width="400"
+          height="400"
         />
-        <span className={styles.categoryBadge}>
+        <span className={styles.categoryBadge} aria-label={`Category: ${category}`}>
           {capitalize(category)}
         </span>
         {showSuccess && (
-          <div className={styles.successBadge}>✓ Added!</div>
+          <div className={styles.successBadge} role="status" aria-live="polite">
+            ✓ Added!
+          </div>
         )}
       </div>
       
       <div className={styles.content}>
         <h3 className={styles.name}>{name}</h3>
-        <p className={styles.price}>{formatPrice(price)}</p>
+        <p className={styles.price} aria-label={`Price: ${formatPrice(price)}`}>
+          {formatPrice(price)}
+        </p>
         
         {stock <= 5 && stock > 0 && (
-          <span className={styles.stockBadge}>
+          <span className={styles.stockBadge} role="status">
             Only {stock} left
           </span>
         )}
         
         {!inStock && (
-          <span className={`${styles.stockBadge} ${styles.outOfStock}`}>
+          <span className={`${styles.stockBadge} ${styles.outOfStock}`} role="status">
             Out of Stock
           </span>
         )}
@@ -62,6 +68,7 @@ const ProductCard = ({ product }) => {
           className={styles.addButton}
           onClick={handleAddToCart}
           disabled={!inStock || addingItem}
+          aria-label={`Add ${name} to cart`}
         >
           {addingItem ? 'Adding...' : inStock ? 'Add to Cart' : 'Out of Stock'}
         </button>

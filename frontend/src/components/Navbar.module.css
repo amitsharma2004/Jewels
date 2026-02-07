@@ -25,10 +25,42 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+  z-index: 101;
 }
 
 .brandIcon {
   font-size: 1.5rem;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  padding: var(--spacing-xs);
+  z-index: 101;
+  min-width: auto;
+  min-height: auto;
+}
+
+.hamburgerLine {
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  transition: all var(--transition-base);
+  border-radius: 2px;
+}
+
+.hamburgerLine.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburgerLine.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerLine.open:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
 .nav {
@@ -49,6 +81,7 @@
   font-weight: 500;
   transition: color var(--transition-fast);
   position: relative;
+  padding: var(--spacing-xs) 0;
 }
 
 .navLink:hover {
@@ -58,7 +91,7 @@
 .navLink::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
@@ -99,7 +132,7 @@
   right: -8px;
   background: var(--color-error);
   color: var(--color-text-white);
-  width: 20px;
+  min-width: 20px;
   height: 20px;
   border-radius: 50%;
   display: flex;
@@ -107,11 +140,45 @@
   justify-content: center;
   font-size: 0.75rem;
   font-weight: 700;
+  padding: 0 4px;
 }
 
+/* Tablet and Mobile */
 @media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--color-bg);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px var(--spacing-xl) var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    transition: right var(--transition-base);
+    gap: var(--spacing-2xl);
+  }
+  
+  .nav.mobileOpen {
+    right: 0;
+  }
+  
   .navLinks {
-    display: none;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+  }
+  
+  .navLink {
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-sm) 0;
+    width: 100%;
   }
   
   .brand {
@@ -119,10 +186,22 @@
   }
   
   .cartButton {
-    padding: var(--spacing-sm);
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-sm);
   }
   
-  .cartText {
-    display: none;
+  .brand {
+    font-size: var(--font-size-base);
+  }
+  
+  .brandIcon {
+    font-size: 1.25rem;
   }
 }

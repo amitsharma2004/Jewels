@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCart, selectCartItems, selectCartTotal, selectCartItemCount } from '../store/slices/cartSlice';
 import CartItem from '../components/CartItem';
+import CartItemSkeleton from '../components/Skeletons/CartItemSkeleton';
 import { formatPrice } from '../utils';
 import styles from './CartPage.module.css';
 
@@ -25,8 +26,15 @@ const CartPage = () => {
     return (
       <div className={styles.page}>
         <div className={styles.container}>
-          <div className={styles.loading}>
-            <p className={styles.loadingText}>Loading your cart...</p>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Shopping Cart</h1>
+          </div>
+          <div className={styles.content}>
+            <div className={styles.cartItems}>
+              {[...Array(3)].map((_, index) => (
+                <CartItemSkeleton key={index} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -38,7 +46,7 @@ const CartPage = () => {
       <div className={styles.page}>
         <div className={styles.container}>
           <div className={styles.emptyCart}>
-            <div className={styles.emptyIcon}>🛒</div>
+            <div className={styles.emptyIcon} aria-hidden="true">🛒</div>
             <h2 className={styles.emptyTitle}>Your Cart is Empty</h2>
             <p className={styles.emptyMessage}>
               Looks like you haven't added any items to your cart yet
@@ -63,19 +71,21 @@ const CartPage = () => {
         </div>
 
         {error && (
-          <div className={styles.error}>
+          <div className={styles.error} role="alert">
             {error}
           </div>
         )}
 
         <div className={styles.content}>
-          <div className={styles.cartItems}>
+          <div className={styles.cartItems} role="list" aria-label="Cart items">
             {items.map((item) => (
-              <CartItem key={item.productId._id} item={item} />
+              <div key={item.productId._id} role="listitem">
+                <CartItem item={item} />
+              </div>
             ))}
           </div>
 
-          <div className={styles.summary}>
+          <aside className={styles.summary} aria-label="Order summary">
             <h2 className={styles.summaryTitle}>Order Summary</h2>
             
             <div className={styles.summaryRow}>
@@ -97,10 +107,15 @@ const CartPage = () => {
               className={styles.checkoutButton}
               disabled
               title="Checkout coming soon"
+              aria-label="Proceed to checkout (coming soon)"
             >
               Proceed to Checkout
             </button>
-          </div>
+            
+            <p className={styles.checkoutNote}>
+              Checkout functionality coming soon
+            </p>
+          </aside>
         </div>
       </div>
     </div>
