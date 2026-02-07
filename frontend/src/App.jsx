@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import { Home, ProductListingPage, Cart } from './pages';
+import { Home, ProductListingPage, CartPage } from './pages';
 import { Navbar } from './components';
 import './styles/global.css';
 
@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductListingPage />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<CartPage />} />
           </Routes>
         </div>
       </BrowserRouter>

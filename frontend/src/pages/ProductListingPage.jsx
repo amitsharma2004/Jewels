@@ -13,11 +13,6 @@ const ProductListingPage = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const handleAddToCart = (product) => {
-    console.log('Add to cart:', product);
-    // Cart functionality will be implemented later
-  };
-
   const handleRetry = () => {
     dispatch(fetchProducts());
   };
@@ -83,7 +78,6 @@ const ProductListingPage = () => {
             <ProductCard 
               key={product._id} 
               product={product}
-              onAddToCart={handleAddToCart}
             />
           ))}
         </div>
