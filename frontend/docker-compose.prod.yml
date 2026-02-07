@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # Frontend (Production with Nginx)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+      args:
+        - VITE_API_URL=${VITE_API_URL:-http://localhost:5000/api}
+    container_name: naksh-frontend-prod
+    ports:
+      - "80:80"
+    networks:
+      - naksh-network
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+networks:
+  naksh-network:
+    driver: bridge
