@@ -6,10 +6,12 @@ import styles from './ProductCard.module.css';
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const { _id, name, price, category, images, inStock, stock } = product;
-  const imageUrl = images?.[0] || 'https://via.placeholder.com/400x400?text=Jewelry';
+  const { name, price, category, images, inStock, stock } = product;
+  
+  const imageUrl = images?.[0] || 'https://via.placeholder.com/400x400/D4AF37/FFFFFF?text=Jewelry';
   
   const [showSuccess, setShowSuccess] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const addingItem = useSelector((state) => state.cart.addingItem);
 
   const handleAddToCart = async (e) => {
@@ -25,16 +27,19 @@ const ProductCard = ({ product }) => {
     }
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
         <img 
-          src={imageUrl} 
+          src={imageError ? 'https://via.placeholder.com/400x400/D4AF37/FFFFFF?text=Jewelry' : imageUrl}
           alt={`${name} - ${capitalize(category)}`}
           className={styles.image}
           loading="lazy"
-          width="400"
-          height="400"
+          onError={handleImageError}
         />
         <span className={styles.categoryBadge} aria-label={`Category: ${category}`}>
           {capitalize(category)}

@@ -78,8 +78,8 @@ const CartPage = () => {
 
         <div className={styles.content}>
           <div className={styles.cartItems} role="list" aria-label="Cart items">
-            {items.map((item) => (
-              <div key={item.productId._id} role="listitem">
+            {items.filter(item => item.productId).map((item, index) => (
+              <div key={item.productId?._id || `item-${index}`} role="listitem">
                 <CartItem item={item} />
               </div>
             ))}

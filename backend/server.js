@@ -34,6 +34,35 @@ app.get('/health', (req, res) => {
 app.use('/api/products', require('./routes/products'));
 app.use('/api/cart', require('./routes/cart'));
 
+// TEMPORARY: Seed endpoint - REMOVE AFTER FIRST USE
+app.get('/api/seed', async (req, res) => {
+  try {
+    const seedProducts = require('./data/seedData');
+    const Product = require('./models/Product');
+    
+    // Clear existing products
+    await Product.deleteMany({});
+    console.log('Existing products cleared');
+    
+    // Insert seed data
+    await Product.insertMany(seedProducts);
+    console.log('Products seeded successfully');
+    
+    res.status(200).json({
+      success: true,
+      message: `${seedProducts.length} products seeded successfully`,
+      count: seedProducts.length
+    });
+  } catch (error) {
+    console.error('Seed error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to seed database',
+      error: error.message
+    });
+  }
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({

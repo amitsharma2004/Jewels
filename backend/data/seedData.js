@@ -8,8 +8,8 @@ const products = [
     weight: 5.2,
     stock: 15,
     images: [
-      'https://images.unsplash.com/photo-1605100804763-247f67b3557e',
-      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338'
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop'
     ],
     inStock: true
   },
@@ -22,8 +22,8 @@ const products = [
     weight: 25.5,
     stock: 8,
     images: [
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f',
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a'
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=400&fit=crop'
     ],
     inStock: true
   },
@@ -36,8 +36,8 @@ const products = [
     weight: 8.3,
     stock: 25,
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908',
-      'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0'
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400&h=400&fit=crop'
     ],
     inStock: true
   },
@@ -50,8 +50,8 @@ const products = [
     weight: 6.8,
     stock: 12,
     images: [
-      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9',
-      'https://images.unsplash.com/photo-1614170143028-a2a6c9e9b8e5'
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1614170143028-a2a6c9e9b8e5?w=400&h=400&fit=crop'
     ],
     inStock: true
   },
@@ -64,8 +64,8 @@ const products = [
     weight: 3.5,
     stock: 20,
     images: [
-      'https://images.unsplash.com/photo-1629216316261-6d26a2e0e5f5',
-      'https://images.unsplash.com/photo-1596944924591-4c1b1c0c0b1c'
+      'https://images.unsplash.com/photo-1629216316261-6d26a2e0e5f5?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1596944924591-4c1b1c0c0b1c?w=400&h=400&fit=crop'
     ],
     inStock: true
   },
@@ -78,8 +78,8 @@ const products = [
     weight: 12.0,
     stock: 18,
     images: [
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a',
-      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0'
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400&h=400&fit=crop'
     ],
     inStock: true
   },
@@ -92,8 +92,8 @@ const products = [
     weight: 45.0,
     stock: 10,
     images: [
-      'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed',
-      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338'
+      'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop'
     ],
     inStock: true
   },
@@ -106,8 +106,8 @@ const products = [
     weight: 4.2,
     stock: 15,
     images: [
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f',
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a'
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=400&fit=crop'
     ],
     inStock: true
   }
